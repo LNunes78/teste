@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Printer {
+    private:
+        string name;
+        int numImpressions;
+        int tonerLevel;
+        int paperLevel;
+    public:
+        Printer(string name, int tonerLevel, int paperLevel) {
+            this->name = name;
+            this->numImpressions = 0;
+            this->tonerLevel = tonerLevel;
+            this->paperLevel = paperLevel;
+        }
+
+        void printDocument() {
+            if (paperLevel > 0 && tonerLevel > 0) {
+                numImpressions++;
+                paperLevel--;
+                tonerLevel--;
+                cout << "Printing document..." << endl;
+            } else {
+                cout << "Error: paper or toner level is low." << endl;
+            }
+        }
+
+        void showStatus() {
+            cout << "Printer " << name << " has printed " << numImpressions << " documents." << endl;
+            cout << "Toner level: " << tonerLevel << endl;
+            cout << "Paper level: " << paperLevel << endl;
+        }
+};
+
+int main() {
+    Printer printer1("HP LaserJet Pro", 50, 100);
+    Printer printer2("Epson WorkForce", 30, 50);
+
+    printer1.printDocument();
+    printer1.printDocument();
+    printer1.printDocument();
+
+    printer1.showStatus();
+    printer2.showStatus();
+
+    return 0;
+}
